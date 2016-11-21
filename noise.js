@@ -3,94 +3,28 @@
 
 $(document).ready( function() {
 
-  // Play a note when the button is clicked
+  // Play a note when the button is clicked. Assumes that the HTML stays as it
+  // is, so that the note (a, b, c, etc.) is the second class of the element, and
+  // that other elements, such as #aAudio, stay named as they are presently.
 
-  $('.c').click(function(){
-    $('#cAudio')[0].load();
-    $('#cAudio')[0].play();
-  });
+  $('.instrument').on('click', '.note', (function(event){
+    var note = $(this).attr('class').split(/\s+/)[1];
+    console.log(note);
+      $('#' + note + 'Audio')[0].load();
+      $('#' + note + 'Audio')[0].play();
+  }));
 
-  $('.d').click(function(){
-    $('#dAudio')[0].load();
-    $('#dAudio')[0].play();
-  });
-
-  $('.e').click(function(){
-    $('#eAudio')[0].load();
-    $('#eAudio')[0].play();
-  });
-
-  $('.f').click(function(){
-    $('#fAudio')[0].load();
-    $('#fAudio')[0].play();
-  });
-
-  $('.g').click(function(){
-    $('#gAudio')[0].load();
-    $('#gAudio')[0].play();
-  });
-
-  $('.a').click(function(){
-    $('#aAudio')[0].load();
-    $('#aAudio')[0].play();
-  });
-
-  $('.b').click(function(){
-    $('#aAudio')[0].load();
-    $('#bAudio')[0].play();
-  });
-
-  // Play a note when a keyboard key is pressed
+  // Play a note when a keyboard key is pressed. Makes similar assumptions to above
+  // about class naming, though it does not depend on the order of the classes on the
+  // note button elements.
 
   $('body').keydown(function(event){
-    if (event.key == 'c' || event.key == '1'){
-      $('#cAudio')[0].load();
-      $('#cAudio')[0].play();
-      $('.c').addClass('active');
+    if (/^[a-g]$/.test(event.key)){
+      $('#' + event.key + 'Audio')[0].load();
+      $('#' + event.key + 'Audio')[0].play();
+      $('.' + event.key).addClass('active');
       setTimeout(function(){
-        $('.c').removeClass('active');
-      }, 80);
-    } else if (event.key == 'd' || event.key == '2'){
-      $('#dAudio')[0].load();
-      $('#dAudio')[0].play();
-      $('.d').addClass('active');
-      setTimeout(function(){
-        $('.d').removeClass('active');
-      }, 80);
-    } else if (event.key == 'e' || event.key == '3'){
-      $('#eAudio')[0].load();
-      $('#eAudio')[0].play();
-      $('.e').addClass('active');
-      setTimeout(function(){
-        $('.e').removeClass('active');
-      }, 80);
-    } else if (event.key == 'f' || event.key == '4'){
-      $('#fAudio')[0].load();
-      $('#fAudio')[0].play();
-      $('.f').addClass('active');
-      setTimeout(function(){
-        $('.f').removeClass('active');
-      }, 80);
-    } else if (event.key == 'g' || event.key == '5'){
-      $('#gAudio')[0].load();
-      $('#gAudio')[0].play();
-      $('.g').addClass('active');
-      setTimeout(function(){
-        $('.g').removeClass('active');
-      }, 80);
-    } else if (event.key == 'a' || event.key == '6'){
-      $('#aAudio')[0].load();
-      $('#aAudio')[0].play();
-      $('.a').addClass('active');
-      setTimeout(function(){
-        $('.a').removeClass('active');
-      }, 80);
-    } else if (event.key == 'b' || event.key == '7'){
-      $('#bAudio')[0].load();
-      $('#bAudio')[0].play();
-      $('.b').addClass('active');
-      setTimeout(function(){
-        $('.b').removeClass('active');
+        $('.' + event.key).removeClass('active');
       }, 80);
     }
   });
