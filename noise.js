@@ -4,7 +4,7 @@
 $(document).ready( function() {
 
   // Play a note when the button is clicked. Assumes that the HTML stays as it
-  // is, so that the note (a, b, c, etc.) is the second class ([1]) of the element, and
+  // is, so that the note (a, b, c, etc.) is the second class ([0]) of the element, and
   // that other elements, such as #aAudio, stay named as they are presently.
 
   $('.instrument').on('click', '.note', (function(event){
