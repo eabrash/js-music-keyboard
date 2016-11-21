@@ -51,3 +51,13 @@ body {
 .b { color: #f26fd4; background-color: #43293d; }
 .b:hover { background-color: #6f3a62; }
 .b:active, .b.active { background-color: #f26fd4; }
+
+
+/* Modified from: http://stackoverflow.com/questions/21296673/jquery-keyup-keydown-and-keypress-are-not-working-with-ipad-and-bluetooth */
+.hidden-form-for-safari {
+  overflow: hidden;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  left: -500px;
+}

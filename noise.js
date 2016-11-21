@@ -2,6 +2,7 @@
 // Delay to make activation visible: http://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
 
 $(document).ready( function() {
+  // $('.hidden-form-for-safari').focus();
 
   // Play a note when the button is clicked. Assumes that the HTML stays as it
   // is, so that the note (a, b, c, etc.) is the second class ([0]) of the element, and
@@ -20,6 +21,8 @@ $(document).ready( function() {
   // Regex reference: http://stackoverflow.com/questions/7070975/regex-one-character-only
 
   $('body').keydown(function(event){
+    console.log(event);
+    console.log($.browser);
     if (/^[a-g]$/.test(event.key)){
       $('#' + event.key + 'Audio')[0].load();
       $('#' + event.key + 'Audio')[0].play();
@@ -29,6 +32,7 @@ $(document).ready( function() {
         $('.' + event.key).removeClass('active');
       }, 80);
     }
+
   });
 
 });
