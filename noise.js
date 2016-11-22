@@ -2,7 +2,6 @@
 // Delay to make activation visible: http://stackoverflow.com/questions/17883692/how-to-set-time-delay-in-javascript
 
 $(document).ready( function() {
-  // $('.hidden-form-for-safari').focus();
 
   // Play a note when the button is clicked. Assumes that the HTML stays as it
   // is, so that the note (a, b, c, etc.) is the second class ([0]) of the element, and
@@ -18,18 +17,18 @@ $(document).ready( function() {
   // Play a note when a keyboard key is pressed. Makes similar assumptions to above
   // about class naming, though it does not depend on the order of the classes on the
   // note button elements.
-  // Regex reference: http://stackoverflow.com/questions/7070975/regex-one-character-only
 
   $('body').keydown(function(event){
-    console.log(event);
-    console.log($.browser);
-    if (/^[a-g]$/.test(event.key)){
-      $('#' + event.key + 'Audio')[0].load();
-      $('#' + event.key + 'Audio')[0].play();
-      $('.' + event.key).addClass('active');
+
+    if (parseInt(event.keyCode) >= 65 && parseInt(event.keyCode) <= 71){
+      var lookup = {'65': 'a', '66': 'b', '67': 'c', '68': 'd', '69': 'e', '70': 'f', '71': 'g'};
+      var key = lookup[event.keyCode];
+      $('#' + key + 'Audio')[0].load();
+      $('#' + key + 'Audio')[0].play();
+      $('.' + key).addClass('active');
       // Makes the note button flash as if clicked
       setTimeout(function(){
-        $('.' + event.key).removeClass('active');
+        $('.' + key).removeClass('active');
       }, 80);
     }
 
