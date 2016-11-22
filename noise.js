@@ -4,7 +4,7 @@
 $(document).ready( function() {
 
   // Play a note when the button is clicked. Assumes that the HTML stays as it
-  // is, so that the note (a, b, c, etc.) is the second class ([1]) of the element, and
+  // is, so that the note (a, b, c, etc.) is the second class ([0]) of the element, and
   // that other elements, such as #aAudio, stay named as they are presently.
 
   $('.instrument').on('click', '.note', (function(event){
@@ -17,18 +17,21 @@ $(document).ready( function() {
   // Play a note when a keyboard key is pressed. Makes similar assumptions to above
   // about class naming, though it does not depend on the order of the classes on the
   // note button elements.
-  // Regex reference: http://stackoverflow.com/questions/7070975/regex-one-character-only
 
   $('body').keydown(function(event){
-    if (/^[a-g]$/.test(event.key)){
-      $('#' + event.key + 'Audio')[0].load();
-      $('#' + event.key + 'Audio')[0].play();
-      $('.' + event.key).addClass('active');
+
+    if (parseInt(event.keyCode) >= 65 && parseInt(event.keyCode) <= 71){
+      var lookup = {'65': 'a', '66': 'b', '67': 'c', '68': 'd', '69': 'e', '70': 'f', '71': 'g'};
+      var key = lookup[event.keyCode];
+      $('#' + key + 'Audio')[0].load();
+      $('#' + key + 'Audio')[0].play();
+      $('.' + key).addClass('active');
       // Makes the note button flash as if clicked
       setTimeout(function(){
-        $('.' + event.key).removeClass('active');
+        $('.' + key).removeClass('active');
       }, 80);
     }
+
   });
 
 });
